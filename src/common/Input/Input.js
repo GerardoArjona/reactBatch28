@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class  extends Component {
+class Input extends Component {
 
   constructor(props){
     super(props)
@@ -43,7 +43,7 @@ Input.propTypes = {
   id: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   value: PropTypes.any.isRequired,
-  setInput: PropTypes.fun.isRequired,
+  setInput: PropTypes.func.isRequired,
   required: PropTypes.bool
 }
 
