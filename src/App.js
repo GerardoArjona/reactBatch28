@@ -1,7 +1,7 @@
-import "@babel/polyfill"
+import "@babel/polyfill";
 import React, { Component } from 'react';
 import { ApolloProvider } from 'react-apollo';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 
 import $ from 'jquery';
 import 'bootstrap/dist/js/bootstrap.js';
@@ -10,20 +10,21 @@ import './App.css';
 
 import clientGraphql from './Graphql';
 import routes from './config/routes';
-import { Navbar as NavbarComponent} from './common/Navbar';
+import { Navbar as NavbarComponent } from './common/Navbar';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <ApolloProvider client={clientGraphql}>
-          <Router>
+      <ApolloProvider client={clientGraphql}>
+        <Router>
+          <React.Fragment>
+            <NavbarComponent />
             <Switch>
-              {routes}
+              { routes }
             </Switch>
-          </Router>
-        </ApolloProvider>
-      </div>
+          </React.Fragment>
+        </Router>
+      </ApolloProvider>
     );
   }
 }
