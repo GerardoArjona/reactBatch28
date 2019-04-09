@@ -1,25 +1,16 @@
-import '@babel/polyfill'
+import "@babel/polyfill"
 import React, { Component } from 'react';
-// hace conexion con graphql
 import { ApolloProvider } from 'react-apollo';
-// rutas 
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Link
-} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router';
 
 import $ from 'jquery';
 import 'bootstrap/dist/js/bootstrap.js';
-import 'bootstrap/dist/css/bootstrap.css'
-// import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import './App.css';
 
 import clientGraphql from './Graphql';
 import routes from './config/routes';
-// import {Navbar as NavbarComponent} from './common/Navbar';
-
-
+import { Navbar as NavbarComponent} from './common/Navbar';
 
 class App extends Component {
   render() {
