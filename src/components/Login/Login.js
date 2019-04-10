@@ -52,7 +52,10 @@ class Login extends Component {
                 {
                     (login, {data,error, loading}) => {
                         if(data) this.catchData(data)
-                        if(error) isError = <p>Not logged</p>
+                        if(error) {
+                            if(error.graphQLErrors[0].message)
+                                isError = <h1>Email/Password does not exists </h1>
+                        }
                         return(
                             <form onSubmit={e => this.handleForm(e,login)}>
                                 <div>
