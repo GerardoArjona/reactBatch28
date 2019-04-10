@@ -46,12 +46,13 @@ class Login extends Component {
     }
 
     render() { 
+        let isError;
         return ( 
             <Mutation mutation={LOGIN}>
                 {
                     (login, {data,error, loading}) => {
                         if(data) this.catchData(data)
-                        if(error) this.catchError(error)
+                        if(error) isError = <p>Not logged</p>
                         return(
                             <form onSubmit={e => this.handleForm(e,login)}>
                                 <div>
@@ -77,6 +78,7 @@ class Login extends Component {
                                 <button type="submit" className="btn btn-success">
                                     Iniciar Sesión
                                 </button>
+                                {isError}
                             </form>
                         );
                     }
