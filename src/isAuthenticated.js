@@ -1,3 +1,3 @@
 export default () => {
-    return localStorage.getItem( 'appToken' ) !== null;
+    return localStorage.getItem('appToken') !== null;
 }

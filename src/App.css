@@ -31,3 +31,34 @@
     transform: rotate(360deg);
   }
 }
+
+.signup {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.signup h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.imageContainer {
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.imageContainer > div  {
+  
+}
+
+.imageContainer > img {
+  border-radius: 80px;
+  position: relative;
+  width: 100px;
+  height: 100px;
+}

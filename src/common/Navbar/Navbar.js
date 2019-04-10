@@ -5,12 +5,11 @@ import payload from '../../payload';
 import isAuthenticated from '../../isAuthenticated';
 
 class Navbar extends Component {
-    
-    constructor(){
+    constructor() {
         super();
-        this.state = {
+        this.state = { 
             authenticated: localStorage.getItem('appToken') !== null
-        }
+         }
     }
 
     authenticatedRender = () => {
@@ -23,23 +22,23 @@ class Navbar extends Component {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to={`/create-post`}>
+                        <a className="nav-link" href="/create-post">
                             Nuevo Post
-                        </Link>
+                        </a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="/logout">
-                            Cerrar Sesion
+                            Cerrar Sesión
                         </a>
                     </li>
                 </ul>
-            )
+            );
         } else {
             return (
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
                         <a className="nav-link" href="/login">
-                            Inicia Sesion
+                            Inicia Sesión
                         </a>
                     </li>
                     <li className="nav-item">
@@ -48,31 +47,37 @@ class Navbar extends Component {
                         </a>
                     </li>
                 </ul>
-            )
+            );
         }
     }
+
 
     render() { 
         return ( 
             <nav className="navbar navbar-expand-ls navbar-dark bg-dark">
-                <Link className="navbar-brand" to="/">
-                    My Blog Posts
+                <Link 
+                    className="navbar-brand"
+                    to="/"
+                >
+                My Blog Posts
                 </Link>
                 <button
                     className="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
                     data-target="#navbarNav"
+                    aria-controls="navbarNav"
                     aria-expanded="false"
-                    aria-label="Toggle Navigation"
+                    aria-label="Toggle navigation"
                 >
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
-                    { this.authenticatedRender() }
+                    {
+                        this.authenticatedRender()
+                    }
                 </div>
             </nav>
-
          );
     }
 }
