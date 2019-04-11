@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 import { Login } from '../components/Login';
-import SignUp from '../components/signup/index'
+import Signup from '../components/Signup/index'
 import { Posts, PostDetail } from '../components/Posts';
 import { UserDetail } from '../components/Users';
 import isAuthenticated from '../isAuthenticated';
@@ -26,7 +26,7 @@ const PrivateRoute = ({component: Component, ...rest}) => (
 export default [
     <Route exact path="/login" component={Login} />,
     <Route exact path="/logout" component={Logout} />,
-    <Route exact path="/signup" component={SignUp} />,
+    <Route exact path="/signup" component={Signup} />,
     // <Route exact path="/signup" component={SignUp} />,
     // <Route component={NoMatchComponent} />
     <PrivateRoute exact path="/" component={Posts}/>,
