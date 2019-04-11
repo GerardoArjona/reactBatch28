@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
-import { Query, Subscription } from 'react-apollo';
+import { Query, Subscription, Mutation } from 'react-apollo';
 import PostCard from './PostCard';
-import loader from '../../common/loader.gif'
+import loader from '../../common/loader.gif';
 
+import FormPost from "./formPost";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import { timingSafeEqual } from 'crypto';
@@ -19,6 +20,15 @@ const ALLPOSTS = gql`
         }
     }
 `
+const POST_REGISTER = gql`
+  mutation addPost($title: String!, $content: String!, $category: CATEGORIES!) {
+    createPost(
+      data: { title: $title, content: $content, category: $category }
+    ) {
+      title
+    }
+  }
+`;
 
 const NEW_POST = gql`
     subscription {
@@ -33,8 +43,14 @@ const NEW_POST = gql`
 export default class Posts extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      newPosts: []
+    };
     this.notificationDOMRef = React.createRef();
   }
+  handleCreatePopst = (data, addPost) => {
+    addPost({ variables: data });
+  };
 
   addNotification = (data) => {
     this.notificationDOMRef.current.addNotification({
@@ -71,6 +87,21 @@ export default class Posts extends Component {
             }
           }
         </Subscription>
+        <Mutation mutation={POST_REGISTER}>
+          {(createPost, { data, error, loading }) => {
+            if (data) console.log(data)
+            if (error) console.log("Posts Error", error);
+            if (loading) return <img src={loader} alt="" />;
+
+            return (
+              <FormPost
+                handleCreatePopst={data =>
+                  this.handleCreatePopst(data, createPost)
+                }
+              />
+            );
+          }}
+        </Mutation>
         <Query query={ALLPOSTS}>
           {
             ({ data, error, loading }) => {
